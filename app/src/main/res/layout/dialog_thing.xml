@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dialogColorBackground"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/thingNameEt"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="¿Qué artículo se te perdió?"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
+
+    <EditText
+        android:id="@+id/thingDescriptionEt"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Descríbenos tu artículo"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
+
+    <Button
+        android:id="@+id/saveThingBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"
+        android:text="GUARDAR"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>
