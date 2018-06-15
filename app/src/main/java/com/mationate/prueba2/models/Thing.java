@@ -6,16 +6,16 @@ public class Thing extends SugarRecord {
     public Thing() {
     }
 
-    private String thing, description, days;
+    private String thing;
+    private String description;
     private boolean founded;
 
 
 
 
-    public Thing(String thing, String description, String date, boolean founded) {
+    public Thing(String thing, String description, boolean founded) {
         this.thing = thing;
         this.description = description;
-        this.days = date;
         this.founded = founded;
     }
 
@@ -33,14 +33,6 @@ public class Thing extends SugarRecord {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getDays() {
-        return days;
-    }
-
-    public void setDays(String days) {
-        this.days = days;
     }
 
     public boolean isFounded() {

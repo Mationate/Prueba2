@@ -1,10 +1,10 @@
-package com.mationate.prueba2;
+package com.mationate.prueba2.main;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,22 +13,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mationate.prueba2.R;
+import com.mationate.prueba2.adapters.ThingListener;
 import com.mationate.prueba2.adapters.ThingsAdapter;
 import com.mationate.prueba2.models.Thing;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements ThingListener {
 
     private ThingsAdapter adapter;
+
+    public static final String THING_ID = "com.mationate.prueba2.views.main.KEY.THING_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +49,13 @@ public class MainActivity extends AppCompatActivity {
                         EditText descriptionInput = dialog.findViewById(R.id.thingDescriptionEt);
                         String description = descriptionInput.getText().toString();
 
-                        if (name.trim().length() > 0 && description.trim().length() > 0) {
+                        if (name.trim().length()>0 && description.trim().length() >0){
                             Thing thing = new Thing();
                             thing.setThing(name);
                             thing.setDescription(description);
                             thing.save();
 
                             updateList(thing);
-
 
                             Log.e("SAVE", String.valueOf(thing.getThing()));
                         } else {
@@ -94,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         /*}*/
 
-         adapter = new ThingsAdapter();
+
+        adapter = new ThingsAdapter(this,this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -104,7 +100,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void ClickedID(long id) {
+        Intent intent = new Intent(MainActivity.this, DetailThingActivity.class);
+        intent.putExtra(THING_ID, id);
+        intent.putExtra("name",id);
+        startActivity(intent);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.updateList();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        adapter.updateList();
+    }
 }
 
 
