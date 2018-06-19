@@ -1,6 +1,5 @@
 package com.mationate.prueba2.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,17 +11,16 @@ import com.mationate.prueba2.R;
 import com.mationate.prueba2.data.Queries;
 import com.mationate.prueba2.models.Thing;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ThingsAdapter extends RecyclerView.Adapter<ThingsAdapter.ViewHolder> {
 
-    public List<Thing> things = new Queries().things();
-    ThingListener thingListener;
-    Context context;
+    private List<Thing> things = new ArrayList<>();
+    private ThingListener thingListener;
 
-    public ThingsAdapter(ThingListener listener, Context context) {
+    public ThingsAdapter(ThingListener listener) {
         this.thingListener = listener;
-        this.context = context;
     }
 
     @NonNull
@@ -62,6 +60,9 @@ public class ThingsAdapter extends RecyclerView.Adapter<ThingsAdapter.ViewHolder
     }
 
     public void updateList() {
+        List<Thing> things = new Queries().things();
+        this.things.clear();
+        this.things.addAll(things);
         notifyDataSetChanged();
     }
 

@@ -1,4 +1,4 @@
-package com.mationate.prueba2.main;
+package com.mationate.prueba2.views;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import com.mationate.prueba2.R;
 import com.mationate.prueba2.adapters.ThingListener;
 import com.mationate.prueba2.adapters.ThingsAdapter;
 import com.mationate.prueba2.models.Thing;
+import com.mationate.prueba2.views.details.DetailThingActivity;
 
 public class MainActivity extends AppCompatActivity implements ThingListener {
 
@@ -26,10 +27,12 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
 
     public static final String THING_ID = "com.mationate.prueba2.views.main.KEY.THING_ID";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
                         EditText descriptionInput = dialog.findViewById(R.id.thingDescriptionEt);
                         String description = descriptionInput.getText().toString();
 
-                        if (name.trim().length()>0 && description.trim().length() >0){
+                        if (name.trim().length() > 0 && description.trim().length() > 0) {
                             Thing thing = new Thing();
                             thing.setThing(name);
                             thing.setDescription(description);
@@ -79,24 +82,13 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-
-        /*for (int i = 0; i < 12; i++) {
-            Thing thing = new Thing();
-            thing.setThing(String.valueOf(i));
-            thing.setDescription(String.valueOf(i));
-            thing.save();*/
-
-
-        /*}*/
-
-
-        adapter = new ThingsAdapter(this,this);
+        adapter = new ThingsAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 
-    public void updateList(Thing thing){
+    public void updateList(Thing thing) {
         adapter.update(thing);
-        Log.d("UPDATE",thing.getThing());
+        Log.d("UPDATE", thing.getThing());
 
     }
 
@@ -104,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
     public void ClickedID(long id) {
         Intent intent = new Intent(MainActivity.this, DetailThingActivity.class);
         intent.putExtra(THING_ID, id);
-        intent.putExtra("name",id);
+        intent.putExtra("name", id);
         startActivity(intent);
 
     }
@@ -113,12 +105,16 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
     protected void onResume() {
         super.onResume();
         adapter.updateList();
+        adapter.notifyDataSetChanged();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         adapter.updateList();
+        adapter.notifyDataSetChanged();
+
     }
 }
 

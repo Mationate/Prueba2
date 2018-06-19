@@ -1,4 +1,4 @@
-package com.mationate.prueba2.main;
+package com.mationate.prueba2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +33,8 @@ public class TutorialActivity extends AppCompatActivity {
             }
             return firstTime;
         }*/
+
+
 
 
         Button button = findViewById(R.id.tutorialBtn);

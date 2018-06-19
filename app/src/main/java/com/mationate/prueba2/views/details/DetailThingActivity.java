@@ -1,4 +1,4 @@
-package com.mationate.prueba2.main;
+package com.mationate.prueba2.views.details;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mationate.prueba2.R;
 import com.mationate.prueba2.data.Queries;
 import com.mationate.prueba2.models.Thing;
+import com.mationate.prueba2.views.MainActivity;
 
 public class DetailThingActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class DetailThingActivity extends AppCompatActivity {
                         thing.setFounded(true);
                         thing.save();
                         finish();
-                        // Se borra la fila, pero no en tiempo real, tengo que cerrar la app y abrirla para notar el cambio..
+        //TODO Se borra la fila, pero no en tiempo real, tengo que cerrar la app y abrirla para notar el cambio..
 
 
                     }

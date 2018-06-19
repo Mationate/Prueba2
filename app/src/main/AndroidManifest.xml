@@ -24,7 +24,7 @@
             android:value="com.mationate.prueba2.models" />
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +33,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.TutorialActivity"
+            android:name=".views.TutorialActivity"
             android:theme="@style/AppTheme.NoActionbar"></activity>
-        <activity android:name=".main.DetailThingActivity"></activity>
+        <activity android:name=".views.details.DetailThingActivity"></activity>
     </application>
 
 </manifest>
