@@ -59,7 +59,7 @@ public class ThingsAdapter extends RecyclerView.Adapter<ThingsAdapter.ViewHolder
 
     }
 
-    public void updateList() {
+    public void updateListMain() {
         List<Thing> things = new Queries().things();
         this.things.clear();
         this.things.addAll(things);

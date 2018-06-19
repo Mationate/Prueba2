@@ -7,19 +7,14 @@ import java.util.List;
 public class Queries {
 
     public List<Thing>  things(){
-        /*List<Thing> things = new ArrayList<>();
-        List<Thing> thingList = Thing.listAll(Thing.class);
-        if (thingList != null && thingList.size() >0){
-            things.addAll(thingList);
 
-        }*/
         List<Thing> things = Thing.find(Thing.class,"founded = 0");
         return things;
     }
 
-    public Thing byId (long idpending){
-        Thing pending;
-        pending = Thing.findById(Thing.class, idpending);
-        return pending;
+    public Thing byId (long idThing){
+        Thing thing;
+        thing = Thing.findById(Thing.class, idThing);
+        return thing;
     }
 }

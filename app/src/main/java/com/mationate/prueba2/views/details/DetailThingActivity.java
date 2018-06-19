@@ -24,10 +24,9 @@ public class DetailThingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detail_thing);
-
         thing_id = getIntent().getLongExtra(MainActivity.THING_ID,0);
-
         thing = new Queries().byId(thing_id);
         thingTv = findViewById(R.id.thingResult);
         descriptionTv = findViewById(R.id.descriptionResult);
@@ -48,18 +47,10 @@ public class DetailThingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d("DetailActivity", "Delete this");
-                        /*int auxPosition = holder.getAdapterPosition();
-                        Thing auxPending = things.get(auxPosition);
-                        auxPending.save();
-                        things.remove(auxPosition);
-                        notifyItemRemoved(auxPosition);*/
 
                         thing.setFounded(true);
                         thing.save();
                         finish();
-        //TODO Se borra la fila, pero no en tiempo real, tengo que cerrar la app y abrirla para notar el cambio..
-
-
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

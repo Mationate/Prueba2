@@ -21,10 +21,12 @@ import com.mationate.prueba2.adapters.ThingsAdapter;
 import com.mationate.prueba2.models.Thing;
 import com.mationate.prueba2.views.details.DetailThingActivity;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class MainActivity extends AppCompatActivity implements ThingListener {
 
     private ThingsAdapter adapter;
-
     public static final String THING_ID = "com.mationate.prueba2.views.main.KEY.THING_ID";
 
 
@@ -32,9 +34,28 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         FloatingActionButton fab = findViewById(R.id.fab);
+        Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isFirstRun", true);
+        if (isFirstRun) {
+            startActivity(new Intent(MainActivity.this, TutorialActivity.class));
+
+            ShowcaseConfig config = new ShowcaseConfig();
+            config.setDelay(500);
+
+            MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this);
+            sequence.setConfig(config);
+            sequence.addSequenceItem(fab,
+                    "Agrega un objeto que tengas perdido", "ENTENDIDO");
+            sequence.start();
+        }
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .edit()
+                .putBoolean("isFirstRun", false)
+                .commit();
+
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,17 +78,13 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
                             thing.setThing(name);
                             thing.setDescription(description);
                             thing.save();
-
                             updateList(thing);
 
                             Log.e("SAVE", String.valueOf(thing.getThing()));
                         } else {
                             Toast.makeText(MainActivity.this, "Debes rellenar los campos o no se guardará", Toast.LENGTH_SHORT).show();
                         }
-
                         dialog.dismiss();
-
-
                     }
                 });
 
@@ -81,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
         adapter = new ThingsAdapter(this);
         recyclerView.setAdapter(adapter);
     }
@@ -104,18 +120,12 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.updateList();
+        adapter.updateListMain();
         adapter.notifyDataSetChanged();
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        adapter.updateList();
-        adapter.notifyDataSetChanged();
 
-    }
 }
 
 

@@ -15,26 +15,6 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 
-        /* Boolean firstTime = null;
-        *//**
-         * Checks if the user is opening the app for the first time.
-         * Note that this method should be placed inside an activity and it can be called multiple times.
-         * @return boolean
-         *//*
-        private boolean isFirstTime() {
-            if (firstTime == null) {
-                SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
-                firstTime = mPreferences.getBoolean("firstTime", true);
-                if (firstTime) {
-                    SharedPreferences.Editor editor = mPreferences.edit();
-                    editor.putBoolean("firstTime", false);
-                    editor.commit();
-                }
-            }
-            return firstTime;
-        }*/
-
-
 
 
         Button button = findViewById(R.id.tutorialBtn);
@@ -48,3 +28,24 @@ public class TutorialActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+/* Boolean firstTime = null;
+ *//**
+ * Checks if the user is opening the app for the first time.
+ * Note that this method should be placed inside an activity and it can be called multiple times.
+ * @return boolean
+ *//*
+        private boolean isFirstTime() {
+            if (firstTime == null) {
+                SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
+                firstTime = mPreferences.getBoolean("firstTime", true);
+                if (firstTime) {
+                    SharedPreferences.Editor editor = mPreferences.edit();
+                    editor.putBoolean("firstTime", false);
+                    editor.commit();
+                }
+            }
+            return firstTime;
+        }*/
