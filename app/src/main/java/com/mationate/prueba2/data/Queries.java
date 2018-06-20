@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Queries {
 
-    public List<Thing>  things(){
+    public List<Thing> things() {
 
-        List<Thing> things = Thing.find(Thing.class,"founded = 0");
+        List<Thing> things = Thing.find(Thing.class, "founded = 0");
         return things;
     }
 
-    public Thing byId (long idThing){
+    public Thing byId(long idThing) {
         Thing thing;
         thing = Thing.findById(Thing.class, idThing);
         return thing;

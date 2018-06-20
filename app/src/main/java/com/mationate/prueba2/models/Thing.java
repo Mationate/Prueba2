@@ -11,8 +11,6 @@ public class Thing extends SugarRecord {
     private boolean founded;
 
 
-
-
     public Thing(String thing, String description, boolean founded) {
         this.thing = thing;
         this.description = description;

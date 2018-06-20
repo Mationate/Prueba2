@@ -34,27 +34,26 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         FloatingActionButton fab = findViewById(R.id.fab);
+
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
         if (isFirstRun) {
             startActivity(new Intent(MainActivity.this, TutorialActivity.class));
-
-            ShowcaseConfig config = new ShowcaseConfig();
-            config.setDelay(500);
-
-            MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this);
-            sequence.setConfig(config);
-            sequence.addSequenceItem(fab,
-                    "Agrega un objeto que tengas perdido", "ENTENDIDO");
-            sequence.start();
         }
         getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .edit()
                 .putBoolean("isFirstRun", false)
                 .commit();
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500);
 
-
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this);
+        sequence.setConfig(config);
+        sequence.addSequenceItem(fab,
+                "Agrega un objeto que tengas perdido", "ENTENDIDO");
+        sequence.start();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ThingListener {
                 dialog.show();
             }
         });
-
 
         RecyclerView recyclerView = findViewById(R.id.thingRv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

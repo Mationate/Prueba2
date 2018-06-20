@@ -18,15 +18,15 @@ public class DetailThingActivity extends AppCompatActivity {
 
     private long thing_id;
     private Thing thing;
-    TextView thingTv, descriptionTv;
-    Button foundedBtn;
+    private TextView thingTv, descriptionTv;
+    private Button foundedBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_detail_thing);
-        thing_id = getIntent().getLongExtra(MainActivity.THING_ID,0);
+        thing_id = getIntent().getLongExtra(MainActivity.THING_ID, 0);
         thing = new Queries().byId(thing_id);
         thingTv = findViewById(R.id.thingResult);
         descriptionTv = findViewById(R.id.descriptionResult);
@@ -62,10 +62,6 @@ public class DetailThingActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-
-
-
-
 
 
     }
